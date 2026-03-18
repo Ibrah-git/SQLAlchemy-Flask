@@ -9,3 +9,7 @@ def acceuil():
 
 if __name__ == '__main__':
     app.run(debug=True) 
+
+else:   
+    print("Le module a été importé avec succès !")
+    
