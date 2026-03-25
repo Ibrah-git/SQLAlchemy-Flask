@@ -1,12 +1,17 @@
+from flask import Flask
 from sqlalchemy import create_engine
 from sqlalchemy.orm import (DeclarativeBase, sessionmaker)
 
-DATABASE8_URL = "sqlite:///architect_flask.db"
 
-engine=create_engine(DATABASE8_URL, echo=True)
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+from sqlalchemy.exc import IntegrityError
 
-## Base partage par Tous les modeles 
-class Base(DeclarativeBase):
-    pass
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'  # Utilisation d'une base de données SQLite 
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+db = SQLAlchemy(app) 
+
+
+DATABASE8_URL = "sqlite:///Architect_flask.db" 
