@@ -9,12 +9,27 @@ engine=create_engine(r'sqlite:///' + os.path.join(basedir, 'database.db'))
 
 with engine.connect() as connection:
     ## Requete simple 
-    produit =pd.read_sql_query("SELECT * FROM product ", connection)
-    categorie = pd.read_sql_query("SELECT * FROM categories", connection)
-    print(categorie)
-    print("Pour les categorie c'est ok !")
-    print(produit)
-    print("C'est tout bon !")
+    df =pd.read_sql_query("SELECT * FROM product ", connection)
+    ab = pd.read_sql_query("SELECT * FROM categories", connection)
+    #print(df)
+    #print("c'est ok")
+    #print(ab)
+    #print("good")
+    ## Analyse de donné avance avec pandas 
+    liste=df.groupby("name")["price"].sum()
+    print(liste)
+
+    # 5. Statistiques descriptives 
+    stats=ab.describe()
+    print(stats)
+    print("OK !")
+    
+   
+
+
+
+  
+    
 
 
 
